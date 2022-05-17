@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/background2"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="Buy Membership?"
+        android:textColor="#000000"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="Get the Premium Stories Unlocked"
+        android:textColor="#000000"
+
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="10dp"
+            android:gravity="left"
+            android:src="@drawable/check" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NO Ads"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="10dp"
+            android:gravity="left"
+            android:src="@drawable/check" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Audio Story"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="10dp"
+            android:gravity="left"
+            android:src="@drawable/check" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fully Unlocked Stories"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="10dp"
+            android:gravity="left"
+            android:src="@drawable/check" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Validity 1 Month "
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+
+
+
+
+    <Button
+        android:id="@+id/paymentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pay Rs 10"
+        android:background="@drawable/hooverffext"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ads helps us to keep this app free to use"
+        android:textColor="#000000"
+android:layout_marginBottom="15dp"        android:textStyle="bold"/>
+
+
+
+
+</LinearLayout>

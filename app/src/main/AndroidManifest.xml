@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.bhola.HindidesiKahaniya2">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/app_icon_round"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/app_icon_round"
+        android:supportsRtl="true"
+        android:theme="@style/appTheme"
+        tools:targetApi="n">
+        <activity
+            android:name=".AudioPlayer"
+            android:exported="true" />
+        <activity
+            android:name=".TermsAndConditions"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/app_ID" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".Collection_detail"
+            android:screenOrientation="fullSensor"
+            android:exported="false"/>
+        <activity
+            android:name=".admin_panel"
+            android:exported="false" />
+        <activity
+            android:name=".Notification_Story_Detail"
+            android:exported="false" />
+        <activity
+            android:name=".Notification_StoryPage"
+            android:exported="false" />
+        <activity
+            android:name=".StoryPage"
+            android:exported="false" />
+        <activity
+            android:name=".Download_Detail"
+            android:exported="false" />
+        <activity
+            android:name=".Download_StoryPage"
+            android:exported="false" />
+        <activity
+            android:name=".Collection_GridView"
+            android:exported="false"
+            android:theme="@style/appTheme" />
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait"
+            tools:ignore="IntentFilterExportedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".MyMessagingNotification"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+    </application>
+
+</manifest>
