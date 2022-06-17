@@ -98,21 +98,36 @@ public class ftab2 extends Fragment {
 
 
     private void loadAudioDatabase(View view) {
-
-        if (SplashScreen.Login_Times < 4 || SplashScreen.Sex_Story.equals("inactive")) {
+        if (SplashScreen.Login_Times < 4) {
             Cursor cursor2 = new DatabaseHelper(getActivity(), SplashScreen.DB_NAME, SplashScreen.DB_VERSION, "Audio_Story_Fake").readalldata();
             while (cursor2.moveToNext()) {
-                storyName.add(cursor2.getString(1));
-                storyURL.add(cursor2.getString(2));
+                if(cursor2.getPosition()<70){
+                    storyName.add(cursor2.getString(1));
+                    storyURL.add(cursor2.getString(2));
+                }
+            }
+            Cursor cursor3 = new DatabaseHelper(getActivity(), SplashScreen.DB_NAME, SplashScreen.DB_VERSION, "Audio_Story").readalldata();
+            while (cursor3.moveToNext()) {
+                if(cursor3.getPosition()<20){
+                    storyName.add(cursor3.getString(1));
+                    storyURL.add(cursor3.getString(2));
+                }
+
             }
         } else {
             Cursor cursor = new DatabaseHelper(getActivity(), SplashScreen.DB_NAME, SplashScreen.DB_VERSION, "Audio_Story").readalldata();
             while (cursor.moveToNext()) {
-                storyName.add(cursor.getString(1));
-                storyURL.add(cursor.getString(2));
+                if (SplashScreen.Login_Times < 6) {
+                    if (cursor.getPosition() < 20) {
+                        storyName.add(cursor.getString(1));
+                        storyURL.add(cursor.getString(2));
+                    }
+                } else {
+                    storyName.add(cursor.getString(1));
+                    storyURL.add(cursor.getString(2));
+                }
             }
         }
-
         ArrayList<Object> collectionData = new ArrayList<Object>();
         for (int i = 0; i < storyName.size(); i++) {
             AudioModel model = new AudioModel(storyName.get(i), storyURL.get(i));
@@ -120,6 +135,10 @@ public class ftab2 extends Fragment {
         }
 
         Collections.shuffle(collectionData);
+        if (!SplashScreen.Sex_Story.equals("active") && !SplashScreen.Sex_Story_Switch_Open.equals("active")) {
+            collectionData.clear();
+        }
+
         adapter2 = new AudioStory_Details_Adapter(collectionData, getActivity());
         recyclerView.setAdapter(adapter2);
         progressBar2.setVisibility(View.GONE);
@@ -132,12 +151,8 @@ public class ftab2 extends Fragment {
     boolean isInternetAvailable(Context context) {
         if (context == null) return false;
 
-
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
         if (connectivityManager != null) {
-
-
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
                 if (capabilities != null) {

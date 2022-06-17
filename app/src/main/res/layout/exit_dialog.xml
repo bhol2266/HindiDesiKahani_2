@@ -33,16 +33,17 @@
 
 
 <TextView
+    android:id="@+id/exitMSG"
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:gravity="center"
     android:layout_margin="10dp"
     android:textColor="#E91E1E"
+    android:visibility="gone"
     android:fontFamily="@font/robotoslab_regular"
     android:text="If you Like the app. Please give us a Good Rating"/>
 
 
-a
 
     <LinearLayout
         android:id="@+id/paymentSupport"
@@ -64,6 +65,8 @@ a
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:textStyle="bold"
+
             android:background="@drawable/hooverffext"
             android:fontFamily="@font/robotoslab_regular"
 
@@ -81,7 +84,8 @@ a
             android:background="@drawable/hooverffext"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Exit" />
+            android:textStyle="bold"
+            android:text="EXIT" />
 
     </LinearLayout>
 

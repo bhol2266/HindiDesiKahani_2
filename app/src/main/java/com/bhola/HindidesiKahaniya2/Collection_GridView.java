@@ -159,9 +159,7 @@ Collection_GridView extends AppCompatActivity {
 
     private void exit_dialog() {
 
-        if (!(SplashScreen.Login_Times < 4)){
-            init();
-        }
+
 
         NeumorphButton exit, exit2;
         final androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(nav.getContext());
@@ -169,6 +167,13 @@ Collection_GridView extends AppCompatActivity {
         View promptView = inflater.inflate(R.layout.exit_dialog, null);
         builder.setView(promptView);
         builder.setCancelable(true);
+
+        if (!(SplashScreen.Login_Times < 4)){
+            TextView exitMSG;
+            exitMSG =promptView.findViewById(R.id.exitMSG);
+            exitMSG.setVisibility(View.VISIBLE);
+            init(); // Show PLay store Review option
+        }
 
 
         if ((SplashScreen.Ads_State.equals("active") && SplashScreen.Ad_Network_Name.equals("admob"))) {

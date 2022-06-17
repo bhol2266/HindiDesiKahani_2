@@ -69,7 +69,6 @@ public class Collection_detail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection_detail);
 
-        Toast.makeText(this, "LOGIN TIMES: " + SplashScreen.Login_Times, Toast.LENGTH_SHORT).show();
         try {
             if (SplashScreen.Ads_State.equals("active")) {
                 showAds();
@@ -183,7 +182,6 @@ public class Collection_detail extends AppCompatActivity {
             getDataFromDatabaselovestory();
 
         }
-
         adapter2 = new Collection_Details_ADAPTER(collectonData, context, Collection_DB_Table_Name, Ads_State, title_category);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter2);
@@ -194,8 +192,6 @@ public class Collection_detail extends AppCompatActivity {
 
     private void getDataFromDatabase() {
         List<Object> collectonDataTemp = new ArrayList<>();
-        List<Object> collectonDataTemp2 = new ArrayList<>();
-
 
         try {
             Cursor cursor = new DatabaseHelper(this, "MCB_Story", SplashScreen.DB_VERSION, Collection_DB_Table_Name).readalldata();
@@ -206,20 +202,13 @@ public class Collection_detail extends AppCompatActivity {
 
                 }
 
-
-                for (int i = collectonDataTemp.size() - 1; i >= 0; i--) {
-                    collectonDataTemp2.add(collectonDataTemp.get(i));
-                }
-
-                if (SplashScreen.Login_Times <= 4) {
-                    for (int i = 0; i <= 20; i++) {
-                        collectonData.add(collectonDataTemp2.get(i));
+                if (SplashScreen.Login_Times < 6) {
+                    for (int i = 0; i < 20; i++) {
+                        collectonData.add(collectonDataTemp.get(i));
                     }
                 } else {
-
-                    collectonData = collectonDataTemp2;
+                    collectonData = collectonDataTemp;
                 }
-
 
                 Collections.shuffle(collectonData);
             } finally {
@@ -243,6 +232,7 @@ public class Collection_detail extends AppCompatActivity {
                     collectonData.add(firebaseData);
                 }
                 Collections.shuffle(collectonData);
+
             } finally {
                 cursor.close();
             }

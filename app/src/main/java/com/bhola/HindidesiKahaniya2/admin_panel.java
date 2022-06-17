@@ -44,12 +44,6 @@ public class admin_panel extends AppCompatActivity {
         Add_Stories_to_Notification_Buttons();
 
 
-
-
-
-
-
-
     }
 
 
@@ -221,11 +215,11 @@ public class admin_panel extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    if (Refer_App_url2.length() >2) {
-                        mref.child("Hindi_desi_Kahani-2").child("Refer_App_url2").setValue(Refer_App_url2.getText().toString());
-                        Toast.makeText(admin_panel.this, "Refer_App_url2 ADDED", Toast.LENGTH_SHORT).show();
-                    } else
-                        Toast.makeText(admin_panel.this, "Field is Empty", Toast.LENGTH_SHORT).show();
+                if (Refer_App_url2.length() > 2) {
+                    mref.child("Hindi_desi_Kahani-2").child("Refer_App_url2").setValue(Refer_App_url2.getText().toString());
+                    Toast.makeText(admin_panel.this, "Refer_App_url2 ADDED", Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(admin_panel.this, "Field is Empty", Toast.LENGTH_SHORT).show();
             }
 
         });

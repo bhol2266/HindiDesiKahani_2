@@ -197,11 +197,11 @@ public class Download_StoryPage extends AppCompatActivity {
         fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom_floatingbar);
         toBottom = AnimationUtils.loadAnimation(this, R.anim.to_bottom_floatingbar);
 
-
 //Set Story and Tile
-        storyText.setText(heading.toString());
+        storyText.setText(decryption(heading.toString().trim().replaceAll("\\/", "")));
         title_textview.setText(title);
         favourite_button.setImageResource(R.drawable.favourite_active);
+
 
     }
 
@@ -366,6 +366,19 @@ public class Download_StoryPage extends AppCompatActivity {
     }
 
 
+    private String decryption(String encryptedText) {
+
+        int key = 5;
+        String decryptedText = "";
+
+        //Decryption
+        char[] chars2 = encryptedText.toCharArray();
+        for (char c : chars2) {
+            c -= key;
+            decryptedText = decryptedText + c;
+        }
+        return decryptedText;
+    }
 
 
 

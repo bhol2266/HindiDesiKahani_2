@@ -233,10 +233,10 @@ public class StoryPage extends AppCompatActivity {
         fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom_floatingbar);
         toBottom = AnimationUtils.loadAnimation(this, R.anim.to_bottom_floatingbar);
 
-
 //Set Story and Tile
-        storyText.setText(heading.toString());
+        storyText.setText(decryption(heading.toString().trim().replaceAll("\\/", "")));
         title_textview.setText(title);
+        Log.d("heading", "Intents_and_InitViews: "+decryption(heading));
 
 
     }
@@ -422,6 +422,21 @@ public class StoryPage extends AppCompatActivity {
         seekBar = promptView.findViewById(R.id.your_dialog_seekbar);
         button = promptView.findViewById(R.id.your_dialog_button);
     }
+
+    private String decryption(String encryptedText) {
+
+        int key = 5;
+        String decryptedText = "";
+
+        //Decryption
+        char[] chars2 = encryptedText.toCharArray();
+        for (char c : chars2) {
+            c -= key;
+            decryptedText = decryptedText + c;
+        }
+        return decryptedText;
+    }
+
 
 
     protected void onDestroy() {

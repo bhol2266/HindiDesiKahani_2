@@ -65,7 +65,7 @@ public class Notification_Story_Detail extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         collectonData = new ArrayList<FirebaseData>();
 
-
+        mref.keepSynced(true);
         mref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

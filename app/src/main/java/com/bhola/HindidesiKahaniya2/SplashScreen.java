@@ -53,9 +53,7 @@ public class SplashScreen extends AppCompatActivity {
     TextView textView;
     LottieAnimationView lottie;
 
-    public static ArrayList audio_mList;
     public static String Notification_Intent_Firebase = "inactive";
-    public static String updatingApp_on_PLatStore = "active";
     public static String Ad_Network_Name = "facebook";
     public static String Main_App_url1 = "https://play.google.com/store/apps/details?id=com.bhola.HindidesiKahaniya2";
     public static String Refer_App_url2 = "https://play.google.com/store/apps/developer?id=UK+DEVELOPERS";
@@ -70,7 +68,8 @@ public class SplashScreen extends AppCompatActivity {
     RewardedInterstitialAd mRewardedVideoAd;
 
     public static int DB_VERSION = 1;
-    public static int DB_VERSION_INSIDE_TABLE = 3;
+    public static int DB_VERSION_INSIDE_TABLE = 4;
+    Handler handlerr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +77,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.splash_screen);
 
         copyDatabase();
+
         allUrl();
 //        readJSON();
         sharedPrefrences();
@@ -116,8 +116,6 @@ public class SplashScreen extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         generateNotification();
-
-
         generateFCMToken();
 
     }
@@ -193,7 +191,27 @@ public class SplashScreen extends AppCompatActivity {
 
 
     private void allUrl() {
+        if (!isInternetAvailable(SplashScreen.this)) {
 
+            Handler handler2 = new Handler();
+            handler2.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    handler_forIntent();
+                }
+            }, 2000);
+
+            return;
+        } else {
+            handlerr = new Handler();
+            handlerr.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    handler_forIntent();
+                }
+            }, 9000);
+
+        }
         url_mref = FirebaseDatabase.getInstance().getReference().child("Hindi_desi_Kahani-2");
         url_mref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -205,8 +223,6 @@ public class SplashScreen extends AppCompatActivity {
                 Ads_State = (String) snapshot.child("Ads").getValue();
                 Ad_Network_Name = (String) snapshot.child("Ad_Network").getValue();
 
-                Log.d(TAG, "Sex_Story: " + Sex_Story);
-                Log.d(TAG, "Sex_Story_Switch_Open: " + Sex_Story_Switch_Open);
                 if (SplashScreen.Ads_State.equals("active")) {
                     showAds();
                 }
@@ -215,6 +231,7 @@ public class SplashScreen extends AppCompatActivity {
                 handler2.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        handlerr.removeCallbacksAndMessages(null);
                         handler_forIntent();
                     }
                 }, 500);
@@ -223,7 +240,7 @@ public class SplashScreen extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                if (Login_Times > 5) {
+                if (Login_Times > 4) {
                     Sex_Story = "active";
                     Sex_Story_Switch_Open = "active";
                 }
@@ -236,8 +253,6 @@ public class SplashScreen extends AppCompatActivity {
 
 
     private void copyDatabase() {
-        audio_mList = new ArrayList<ModelClass_AudioStory>();
-
 //      Check For Database is Available in Device or not
         DatabaseHelper databaseHelper = new DatabaseHelper(this, "MCB_Story", DB_VERSION, "UserInformation");
         try {
@@ -323,6 +338,44 @@ public class SplashScreen extends AppCompatActivity {
             return null;
         }
         return json;
+    }
+
+
+    boolean isInternetAvailable(Context context) {
+        if (context == null) return false;
+
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (connectivityManager != null) {
+
+
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
+                if (capabilities != null) {
+                    if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                        return true;
+                    } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                        return true;
+                    } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                        return true;
+                    }
+                }
+            } else {
+
+                try {
+                    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+                    if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+                        Log.i("update_statut", "Network is available : true");
+                        return true;
+                    }
+                } catch (Exception e) {
+                    Log.i("update_statut", "" + e.getMessage());
+                }
+            }
+        }
+        Log.i("update_statut", "Network is available : FALSE ");
+        return false;
     }
 
 }

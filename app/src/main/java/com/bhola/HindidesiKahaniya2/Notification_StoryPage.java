@@ -208,10 +208,9 @@ public class Notification_StoryPage extends AppCompatActivity {
 
 
 //Set Story and Title
-        storyText.setText(heading.toString());
+        storyText.setText(heading.toString().trim().replaceAll("  ","\n\n").replaceAll("\\/",""));
         Log.d("STORY", "Intents_and_InitViews: " + heading);
         title_textview.setText(title);
-
     }
 
 

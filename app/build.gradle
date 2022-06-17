@@ -17,8 +17,8 @@ android {
         applicationId "com.bhola.HindidesiKahaniya2"
         minSdkVersion 21
         targetSdkVersion 32
-        versionCode 13
-        versionName "13.0"
+        versionCode 16
+        versionName "16.0"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -47,7 +47,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'com.google.firebase:firebase-database:20.0.5'
     implementation 'com.google.firebase:firebase-messaging:23.0.4'
-    implementation 'com.google.firebase:firebase-auth:21.0.3'
+    implementation 'com.google.firebase:firebase-auth:21.0.4'
     implementation 'com.firebaseui:firebase-ui-database:7.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -76,7 +76,7 @@ dependencies {
     implementation "com.airbnb.android:lottie:5.0.3"
 
     //In app Review
-    implementation "com.google.android.play:core:1.8.0"
+    implementation "com.google.android.play:core:1.10.3"
 
 
 

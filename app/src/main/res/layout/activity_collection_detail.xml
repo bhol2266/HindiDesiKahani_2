@@ -100,14 +100,17 @@
         android:textSize="20dp"
         android:visibility="gone" />
 
-    <Button
+    <soup.neumorphism.NeumorphButton
         android:id="@+id/retryBtn"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginTop="100dp"
+        android:fontFamily="@font/robotoslab_regular"
         android:background="@drawable/hooverffext"
         android:text="Retry"
+        android:textStyle="bold"
         android:visibility="gone" />
 
 </LinearLayout>

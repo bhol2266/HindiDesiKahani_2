@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -39,6 +40,7 @@ public class AudioPlayer extends AppCompatActivity {
     RewardedInterstitialAd mRewardedVideoAd;
     com.facebook.ads.InterstitialAd facebook_IntertitialAds;
     com.facebook.ads.AdView facebook_adView;
+    final boolean[] isPlayingBoolean = {false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,70 +56,45 @@ public class AudioPlayer extends AppCompatActivity {
         playBtn = findViewById(R.id.playBtn);
         playBtn.setBackgroundResource(R.drawable.play);
         lottie = findViewById(R.id.lottie);
-        final boolean[] isPlayingBoolean = {false};
 
         storyURL = decryption(getIntent().getStringExtra("storyURL"));
         storyName = getIntent().getStringExtra("storyName");
         storyTitle.setText(storyName.replace("-", " ").trim());
 
+
+        startPlayingAudio(); // This is the service class that will run in the background
+
         playBtn.setOnClickListener(v -> {
 
-            if (!mediaPlayer.isPlaying()) {
+            if (!mediaPlayer.isPlaying()) {  //  PLAY
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 mediaPlayer.seekTo(pausePosition - 500);
                 mediaPlayer.start();
                 playBtn.setBackgroundResource(R.drawable.pause);
                 Toast.makeText(AudioPlayer.this, "Resumed", Toast.LENGTH_SHORT).show();
-                lottie.setVisibility(View.VISIBLE);
                 isPlayingBoolean[0] = true;
 
-            } else if (mediaPlayer.isPlaying()) {
+            } else if (mediaPlayer.isPlaying()) { //   PAUSE
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 loadAds();
                 mediaPlayer.pause();
                 playBtn.setBackgroundResource(R.drawable.play);
                 pausePosition = mediaPlayer.getCurrentPosition();
                 playBtn.setBackgroundResource(R.drawable.play);
                 Toast.makeText(AudioPlayer.this, "Paused", Toast.LENGTH_SHORT).show();
-                lottie.setVisibility(View.INVISIBLE);
                 isPlayingBoolean[0] = false;
+                lottie.setVisibility(View.INVISIBLE);
+
             }
         });
-
-
-        try {
-            if (mediaPlayer == null) {
-                mediaPlayer = new MediaPlayer();
-                handler = new Handler();
-                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                mediaPlayer.reset();
-                mediaPlayer.setDataSource(storyURL);
-                mediaPlayer.prepareAsync();
-                mediaPlayer.setOnPreparedListener(mp -> {
-                    try {
-                        seekbar.setMax(mediaPlayer.getDuration());
-                        updateSeekbar();
-                        mediaPlayer.start();
-                        setCurrentTime();
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-
-                });
-
-
-                Toast.makeText(AudioPlayer.this, "Playing", Toast.LENGTH_SHORT).show();
-                playBtn.setBackgroundResource(R.drawable.pause);
-            }
-            temp = 1;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
                 if (fromUser) {
+                    progressbar.setVisibility(View.VISIBLE);
+                    lottie.setVisibility(View.INVISIBLE);
                     seekBar.setProgress(progress);
                     mediaPlayer.seekTo(progress);
                     setCurrentTime();
@@ -148,10 +125,49 @@ public class AudioPlayer extends AppCompatActivity {
         mediaPlayer.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
             @Override
             public void onBufferingUpdate(MediaPlayer mp, int percent) {
-                progressbar.setVisibility(View.INVISIBLE);
-                lottie.setVisibility(View.VISIBLE);
+                if (isPlayingBoolean[0]) {
+                    progressbar.setVisibility(View.INVISIBLE);
+                    lottie.setVisibility(View.VISIBLE);
+                }
             }
         });
+    }
+
+    private void startPlayingAudio() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        seekbar.setVisibility(View.GONE);
+        try {
+            if (mediaPlayer == null) {
+                mediaPlayer = new MediaPlayer();
+                handler = new Handler();
+                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                mediaPlayer.reset();
+                mediaPlayer.setDataSource(storyURL);
+                mediaPlayer.prepareAsync();
+                mediaPlayer.setOnPreparedListener(mp -> {
+                    try {
+                        seekbar.setMax(mediaPlayer.getDuration());
+                        updateSeekbar();
+                        mediaPlayer.start();
+                        seekbar.setVisibility(View.VISIBLE);
+
+                        setCurrentTime();
+                        isPlayingBoolean[0] = true;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+                });
+
+
+                Toast.makeText(AudioPlayer.this, "Playing", Toast.LENGTH_SHORT).show();
+                playBtn.setBackgroundResource(R.drawable.pause);
+            }
+            temp = 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -201,34 +217,6 @@ public class AudioPlayer extends AppCompatActivity {
         onBackPressed();
     }
 
-    protected void onStop() {
-        super.onStop();
-        if (handler != null) {
-            handler.removeCallbacks(runnable);
-        }
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            Toast.makeText(AudioPlayer.this, "Stopped", Toast.LENGTH_SHORT).show();
-        }
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer = null;
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        loadAds();
-        handler.removeCallbacks(runnable);
-        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-            Toast.makeText(AudioPlayer.this, "Stopped", Toast.LENGTH_SHORT).show();
-        }
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer = null;
-        }
-    }
-
 
     private void showAds() {
 
@@ -261,6 +249,52 @@ public class AudioPlayer extends AppCompatActivity {
             decryptedText = decryptedText + c;
         }
         return decryptedText;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        try {
+            loadAds();
+            handler.removeCallbacks(runnable);
+            if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                Toast.makeText(AudioPlayer.this, "Stopped", Toast.LENGTH_SHORT).show();
+            }
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+                mediaPlayer = null;
+            }
+        } catch (Exception e) {
+            Log.d("TAGA", "onBackPressed: "+e.getMessage());
+        }
+
+    }
+
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            playBtn.performClick();
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (handler != null) {
+            handler.removeCallbacks(runnable);
+        }
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            Toast.makeText(AudioPlayer.this, "Stopped", Toast.LENGTH_SHORT).show();
+        }
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer = null;
+        }
     }
 
 
