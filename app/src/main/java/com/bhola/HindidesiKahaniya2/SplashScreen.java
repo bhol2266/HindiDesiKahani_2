@@ -120,6 +120,75 @@ public class SplashScreen extends AppCompatActivity {
 
     }
 
+
+
+    private void allUrl() {
+        if (!isInternetAvailable(SplashScreen.this)) {
+
+            Handler handler2 = new Handler();
+            handler2.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    handler_forIntent();
+                }
+            }, 2000);
+
+            return;
+        } else {
+            handlerr = new Handler();
+            handlerr.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    handler_forIntent();
+                }
+            }, 9000);
+
+        }
+        url_mref = FirebaseDatabase.getInstance().getReference().child("Hindi_desi_Kahani-2");
+        url_mref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Refer_App_url2 = (String) snapshot.child("Refer_App_url2").getValue();
+                exit_Refer_appNavigation = (String) snapshot.child("switch_Exit_Nav").getValue();
+                Sex_Story = (String) snapshot.child("Sex_Story").getValue();
+                Sex_Story_Switch_Open = (String) snapshot.child("Sex_Story_Switch_Open").getValue();
+                Ads_State = (String) snapshot.child("Ads").getValue();
+                Ad_Network_Name = (String) snapshot.child("Ad_Network").getValue();
+                Log.d("dfsgdsfg", "onDataChange: "+Refer_App_url2);
+                Log.d("dfsgdsfg", "onDataChange: "+exit_Refer_appNavigation);
+                Log.d("dfsgdsfg", "onDataChange: "+Sex_Story);
+                Log.d("dfsgdsfg", "onDataChange: "+Sex_Story_Switch_Open);
+                Log.d("dfsgdsfg", "onDataChange: "+Ads_State);
+                Log.d("dfsgdsfg", "onDataChange: "+Ad_Network_Name);
+
+                if (SplashScreen.Ads_State.equals("active")) {
+                    showAds();
+                }
+
+                Handler handler2 = new Handler();
+                handler2.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        handlerr.removeCallbacksAndMessages(null);
+                        handler_forIntent();
+                    }
+                }, 500);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                if (Login_Times > 4) {
+                    Sex_Story = "active";
+                    Sex_Story_Switch_Open = "active";
+                }
+                handler_forIntent();
+
+            }
+        });
+
+    }
+
     private void sharedPrefrences() {
 
         //Reading Login Times
@@ -190,68 +259,6 @@ public class SplashScreen extends AppCompatActivity {
     }
 
 
-    private void allUrl() {
-        if (!isInternetAvailable(SplashScreen.this)) {
-
-            Handler handler2 = new Handler();
-            handler2.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    handler_forIntent();
-                }
-            }, 2000);
-
-            return;
-        } else {
-            handlerr = new Handler();
-            handlerr.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    handler_forIntent();
-                }
-            }, 9000);
-
-        }
-        url_mref = FirebaseDatabase.getInstance().getReference().child("Hindi_desi_Kahani-2");
-        url_mref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Refer_App_url2 = (String) snapshot.child("Refer_App_url2").getValue();
-                exit_Refer_appNavigation = (String) snapshot.child("switch_Exit_Nav").getValue();
-                Sex_Story = (String) snapshot.child("Sex_Story").getValue();
-                Sex_Story_Switch_Open = (String) snapshot.child("Sex_Story_Switch_Open").getValue();
-                Ads_State = (String) snapshot.child("Ads").getValue();
-                Ad_Network_Name = (String) snapshot.child("Ad_Network").getValue();
-
-                if (SplashScreen.Ads_State.equals("active")) {
-                    showAds();
-                }
-
-                Handler handler2 = new Handler();
-                handler2.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        handlerr.removeCallbacksAndMessages(null);
-                        handler_forIntent();
-                    }
-                }, 500);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                if (Login_Times > 4) {
-                    Sex_Story = "active";
-                    Sex_Story_Switch_Open = "active";
-                }
-                handler_forIntent();
-
-            }
-        });
-
-    }
-
-
     private void copyDatabase() {
 //      Check For Database is Available in Device or not
         DatabaseHelper databaseHelper = new DatabaseHelper(this, "MCB_Story", DB_VERSION, "UserInformation");
@@ -312,7 +319,7 @@ public class SplashScreen extends AppCompatActivity {
 
 
     private void handler_forIntent() {
-        lottie.cancelAnimation();
+//        lottie.cancelAnimation();
         if (Notification_Intent_Firebase.equals("active")) {
             Intent intent = new Intent(getApplicationContext(), Notification_Story_Detail.class);
             startActivity(intent);

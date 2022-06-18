@@ -39,17 +39,26 @@
         <entry key="..\:/Users/bhola/Desktop/AndroidStudioProjects/Hindi Desi Kahani 2/app/src/main/res/layout/splash_screen.xml" value="0.2" />
         <entry key="..\:/Users/bhola/Desktop/AndroidStudioProjects/Hindi Desi Kahani 2/app/src/main/res/menu/iconmenu.xml" value="0.22708333333333333" />
         <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/drawable/background.xml" value="0.1" />
+        <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/drawable/delete.xml" value="0.1" />
         <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/drawable/favourote_border.xml" value="0.1535" />
+        <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/drawable/folder.xml" value="0.1" />
+        <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/drawable/pause.xml" value="0.1125" />
+        <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/drawable/play.xml" value="0.1" />
         <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/drawable/textview_gradientforrecyclerview.xml" value="0.1" />
         <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/activity_adminpanel.xml" value="0.26666666666666666" />
-        <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/activity_audio_player.xml" value="0.22" />
+        <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/activity_audio_player.xml" value="0.25" />
+        <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/activity_audio_player_offline.xml" value="0.1" />
         <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/activity_collection__grid_view.xml" value="0.1" />
         <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/activity_collection_detail.xml" value="0.2125" />
         <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/activity_story_page.xml" value="0.1" />
         <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/activity_terms_conditions.xml" value="0.24479166666666666" />
+        <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/custom_snackbar_view.xml" value="0.1" />
+        <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/download_dialog.xml" value="0.22" />
         <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/exit_dialog.xml" value="0.24479166666666666" />
-        <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/grid_layout.xml" value="0.1" />
+        <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/grid_layout.xml" value="0.22" />
+        <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/grid_layout_audio.xml" value="0.1" />
         <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/navheader.xml" value="0.1" />
+        <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/progressbar_dialog.xml" value="0.5" />
         <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/layout/splash_screen.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/bhola/OneDrive/Desktop/Android Applications/Hindi Desi Kahani 2/app/src/main/res/menu/iconmenu.xml" value="0.1" />
       </map>

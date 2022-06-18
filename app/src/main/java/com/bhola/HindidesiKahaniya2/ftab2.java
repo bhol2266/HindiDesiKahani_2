@@ -213,9 +213,7 @@ class AudioStory_Details_Adapter extends RecyclerView.Adapter<RecyclerView.ViewH
         ((Story_ROW_viewHolder) holder).title.setText(filename);
         ((Story_ROW_viewHolder) holder).imageview.setImageResource(R.drawable.mp3);
         ((Story_ROW_viewHolder) holder).date.setText("2020-11-09");
-        ((Story_ROW_viewHolder) holder).heading.setText("");
-        String indexx = String.valueOf(POSITION + 1);
-        ((Story_ROW_viewHolder) holder).index.setText(indexx);
+
         ((Story_ROW_viewHolder) holder).recyclerview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -297,7 +295,7 @@ class AudioStory_Details_Adapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView index, heading, date;
 
         ImageView imageview;
-        RelativeLayout recyclerview;
+        LinearLayout recyclerview;
 
 
         public Story_ROW_viewHolder(@NonNull View itemView) {
@@ -306,9 +304,7 @@ class AudioStory_Details_Adapter extends RecyclerView.Adapter<RecyclerView.ViewH
             recyclerview = itemView.findViewById(R.id.recyclerviewLayout);
             imageview = itemView.findViewById(R.id.imageview);
             title = itemView.findViewById(R.id.titlee);
-            index = itemView.findViewById(R.id.index);
             date = itemView.findViewById(R.id.date_recyclerview);
-            heading = itemView.findViewById(R.id.heading_recyclerview);
 
         }
     }

@@ -29,6 +29,13 @@
             android:name=".TermsAndConditions"
             android:exported="false" />
 
+        <activity
+            android:name=".AudioPlayerOffline"
+            android:exported="false" />
+        <activity
+            android:name=".OfflineAudioStory"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/app_ID" />

@@ -13,6 +13,8 @@
     </style>
 
 
+
+
     <style name="NavigationDrawerStyle">
 
         <item name="android:textSize">18dp</item><!-- text size in menu-->

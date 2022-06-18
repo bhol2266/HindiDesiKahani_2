@@ -8,5 +8,6 @@
     <color name="heading_black">#BF000000</color>
     <color name="semi_black">#BF171717</color>
     <color name="themeColor">#F44336</color>
+    <color name="textcolor2">#000000</color>
 
 </resources>

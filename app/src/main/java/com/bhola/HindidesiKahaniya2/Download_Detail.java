@@ -205,8 +205,7 @@ class Download_story_ADAPTER extends RecyclerView.Adapter<Download_story_ADAPTER
        holder.title.setText(modelData_forFavourites.getTitle());
        holder.date.setText(modelData_forFavourites.getDate());
        holder.heading.setText(modelData_forFavourites.getHeading());
-       String indexx = String.valueOf(position + 1);
-       holder.index.setText(indexx);
+
 
 
        holder.recyclerview.setOnLongClickListener(new View.OnLongClickListener() {
@@ -301,9 +300,7 @@ class Download_story_ADAPTER extends RecyclerView.Adapter<Download_story_ADAPTER
            super(itemView);
            recyclerview = itemView.findViewById(R.id.recyclerviewLayout);
            title = itemView.findViewById(R.id.titlee);
-           index = itemView.findViewById(R.id.index);
            date = itemView.findViewById(R.id.date_recyclerview);
-           heading = itemView.findViewById(R.id.heading_recyclerview);
 
        }
    }

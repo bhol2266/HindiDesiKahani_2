@@ -37,20 +37,12 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:87881322646:android:fbd89a58dbc9f7398272b7",
+        "mobilesdk_app_id": "1:87881322646:android:ddc6b82880806dd68272b7",
         "android_client_info": {
-          "package_name": "com.example.hothindistory"
+          "package_name": "com.bhola.desiKahaniya"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "87881322646-qpvdbv6be94ear5r05jv81l3kkd2ee04.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.hothindistory",
-            "certificate_hash": "b7dfaef012ea05a9de3062198a7ce6a4043be7a8"
-          }
-        },
         {
           "client_id": "87881322646-8ihgc3uuhvmjkdicncl2qp11lj3dl7va.apps.googleusercontent.com",
           "client_type": 3
