@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -94,9 +95,11 @@ public class Notification_Story_Detail extends AppCompatActivity {
     }
 
 
-
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(),Collection_GridView.class));
+    }
 
     private void actionBar() {
         TextView title=findViewById(R.id.title_collection);
@@ -152,7 +155,6 @@ class NotificationAdapter  extends RecyclerView.Adapter<NotificationAdapter.view
        FirebaseData firebaseData = collectonData.get(position);
        holder.title.setText(firebaseData.getTitle());
        holder.date.setText(firebaseData.getDate());
-       holder.heading.setText(firebaseData.getHeading());
 
        holder.recyclerview.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -177,7 +179,7 @@ class NotificationAdapter  extends RecyclerView.Adapter<NotificationAdapter.view
    public class viewholder extends RecyclerView.ViewHolder {
        TextView title;
        TextView index,heading,date;
-       RelativeLayout recyclerview;
+       LinearLayout recyclerview;
 
 
        public viewholder(@NonNull View itemView) {

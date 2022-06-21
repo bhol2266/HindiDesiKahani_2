@@ -1,63 +1,34 @@
 {
   "project_info": {
-    "project_number": "87881322646",
-    "firebase_url": "https://hot-hindi-story-default-rtdb.firebaseio.com",
-    "project_id": "hot-hindi-story",
-    "storage_bucket": "hot-hindi-story.appspot.com"
+    "project_number": "465946102427",
+    "firebase_url": "https://hindi-desi-kahani-2-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "hindi-desi-kahani-2",
+    "storage_bucket": "hindi-desi-kahani-2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:87881322646:android:9ce64d8eef68347a8272b7",
+        "mobilesdk_app_id": "1:465946102427:android:56b7e5526e03e56f69543e",
         "android_client_info": {
           "package_name": "com.bhola.HindidesiKahaniya2"
         }
       },
       "oauth_client": [
         {
-          "client_id": "87881322646-8ihgc3uuhvmjkdicncl2qp11lj3dl7va.apps.googleusercontent.com",
+          "client_id": "465946102427-rspee1ig4476m99qj2v9sn1o7acl66l9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD64kZy1OeZHM6ReMywkHAeAohefdM-K8o"
+          "current_key": "AIzaSyBp5MvWd3-px0-xyPXc-XK-0O-3uIqOGUo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "87881322646-8ihgc3uuhvmjkdicncl2qp11lj3dl7va.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:87881322646:android:ddc6b82880806dd68272b7",
-        "android_client_info": {
-          "package_name": "com.bhola.desiKahaniya"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "87881322646-8ihgc3uuhvmjkdicncl2qp11lj3dl7va.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyD64kZy1OeZHM6ReMywkHAeAohefdM-K8o"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "87881322646-8ihgc3uuhvmjkdicncl2qp11lj3dl7va.apps.googleusercontent.com",
+              "client_id": "465946102427-rspee1ig4476m99qj2v9sn1o7acl66l9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

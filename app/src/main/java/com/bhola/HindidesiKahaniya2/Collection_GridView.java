@@ -64,7 +64,6 @@ Collection_GridView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection__grid_view);
 
-
         try {
             if (SplashScreen.Ads_State.equals("active")) {
                 showAds();

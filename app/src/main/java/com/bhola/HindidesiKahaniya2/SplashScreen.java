@@ -154,12 +154,6 @@ public class SplashScreen extends AppCompatActivity {
                 Sex_Story_Switch_Open = (String) snapshot.child("Sex_Story_Switch_Open").getValue();
                 Ads_State = (String) snapshot.child("Ads").getValue();
                 Ad_Network_Name = (String) snapshot.child("Ad_Network").getValue();
-                Log.d("dfsgdsfg", "onDataChange: "+Refer_App_url2);
-                Log.d("dfsgdsfg", "onDataChange: "+exit_Refer_appNavigation);
-                Log.d("dfsgdsfg", "onDataChange: "+Sex_Story);
-                Log.d("dfsgdsfg", "onDataChange: "+Sex_Story_Switch_Open);
-                Log.d("dfsgdsfg", "onDataChange: "+Ads_State);
-                Log.d("dfsgdsfg", "onDataChange: "+Ad_Network_Name);
 
                 if (SplashScreen.Ads_State.equals("active")) {
                     showAds();
@@ -307,7 +301,7 @@ public class SplashScreen extends AppCompatActivity {
     private void generateNotification() {
 
 
-        FirebaseMessaging.getInstance().subscribeToTopic("all")
+        FirebaseMessaging.getInstance().subscribeToTopic("test")
                 .addOnCompleteListener(task -> {
 
                     if (!task.isSuccessful()) {
