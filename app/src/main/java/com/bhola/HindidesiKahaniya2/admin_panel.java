@@ -308,7 +308,9 @@ public class admin_panel extends AppCompatActivity {
                     STory_Switch_Active_BTN.setBackgroundColor(Color.parseColor("#FF0000"));
                 }
 
-                Ad_Network.setText(SplashScreen.Ad_Network_Name);
+                String Ad_Network_name = (String) snapshot.child("Ad_Network").getValue().toString().trim();
+
+                Ad_Network.setText(Ad_Network_name);
                 if (snapshot.child("Ad_Network").getValue().toString().trim().equals("admob")) {
                     Ad_Network.setBackgroundColor(Color.parseColor("#D11A1A"));
                 } else {
