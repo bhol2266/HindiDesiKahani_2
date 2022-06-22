@@ -157,8 +157,7 @@ public class SplashScreen extends AppCompatActivity {
                 Ad_Network_Name = (String) snapshot.child("Ad_Network").getValue();
                 Notification_ImageURL = (String) snapshot.child("Notification_ImageURL").getValue();
 
-                Log.d(TAG, "onDataChange: "+Sex_Story);
-                Log.d(TAG, "onDataChange: "+Sex_Story_Switch_Open);
+
 
                 if (SplashScreen.Ads_State.equals("active")) {
                     showAds();
