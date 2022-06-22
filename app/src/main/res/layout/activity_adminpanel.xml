@@ -28,15 +28,23 @@
         android:inputType="textPersonName" />
 
     <EditText
+        android:id="@+id/image_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:ems="10"
+        android:hint="Image Url"
+        android:inputType="textPersonName" />
+
+    <EditText
         android:id="@+id/pragraphofstory"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="5dp"
         android:ems="10"
         android:hint="Paragraph"
-        android:maxLines="8"
         android:inputType="textMultiLine"
-       />
+        android:maxLines="8" />
 
     <soup.neumorphism.NeumorphButton
         android:id="@+id/selectStory"

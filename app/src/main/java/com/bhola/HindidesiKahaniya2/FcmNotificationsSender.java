@@ -2,6 +2,7 @@ package com.bhola.HindidesiKahaniya2;
 
 import android.app.Activity;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -17,23 +18,25 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FcmNotificationsSender  {
+public class FcmNotificationsSender {
 
     String userFcmToken;
     String title;
     String body;
+    String image_url;
     String toGoActivity;
     Activity mActivity;
 
 
     private RequestQueue requestQueue;
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
-    private final String fcmServerKey ="AAAAFHYikJY:APA91bFPjBOWM71EEXD-X_TMOiF6uUiW7iEMsFpzpDeLnsk3OtI9GC94Jb7J2WKVzIWYeK9NGYmaScjXsqcNulT0KJuBUoRiva1Zw3G7QZ-6MqfZwvRCI0DFPkk_M2BHDYwkOy7SNPmG";
+    private final String fcmServerKey = "AAAAbHyNSps:APA91bHDsvRTGRPlMFU7WllWCOX62Adkr8afWwrpvcC6ZmfF3uVc9000I9Dw1EbyEJextbT8IoTA1GYLUXW8uTLIgQ3JpCzrtSH_TiTLbvpi8OEBgYUlS5feMo8RFQDpqBkTN9ApsxO6";
 
-    public FcmNotificationsSender(String userFcmToken, String title, String body,String toGoActivity,  Activity mActivity) {
+    public FcmNotificationsSender(String userFcmToken, String title, String body, String image, String toGoActivity, Activity mActivity) {
         this.userFcmToken = userFcmToken;
         this.title = title;
         this.body = body;
+        this.image_url = image;
         this.toGoActivity = toGoActivity;
         this.mActivity = mActivity;
 
@@ -49,12 +52,11 @@ public class FcmNotificationsSender  {
             JSONObject notiObject = new JSONObject();
             notiObject.put("title", title);
             notiObject.put("body", body);
+            notiObject.put("image", image_url);
             notiObject.put("icon", "app_icon"); // enter icon that exists in drawable only
 
 
-
-
-            JSONObject extradata =new JSONObject();
+            JSONObject extradata = new JSONObject();
             extradata.put("KEY1", toGoActivity);
 
             mainObj.put("notification", notiObject);
@@ -71,6 +73,7 @@ public class FcmNotificationsSender  {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     // code run is got error
+                    Toast.makeText(mActivity, error.getMessage(), Toast.LENGTH_SHORT).show();
 
                 }
             }) {
@@ -90,10 +93,8 @@ public class FcmNotificationsSender  {
 
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            Toast.makeText(mActivity, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-
-
 
 
     }

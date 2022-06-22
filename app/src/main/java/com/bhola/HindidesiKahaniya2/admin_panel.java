@@ -33,11 +33,11 @@ public class admin_panel extends AppCompatActivity {
 
     DatabaseReference mref, notificationMref;
     TextView Users_Counters;
-    EditText title_story, pragraphofstory, date;
+    EditText title_story, pragraphofstory, date, image_url;
     Button selectStory, insertBTN, Refer_App_url_BTN, STory_Switch_Active_BTN;
     Switch switch_Exit_Nav, switch_Activate_Ads, switch_Sex_Story;
     Button Ad_Network;
-    static  String uncensored_title="";
+    static String uncensored_title = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +70,7 @@ public class admin_panel extends AppCompatActivity {
         title_story = findViewById(R.id.title_story);
         pragraphofstory = findViewById(R.id.pragraphofstory);
         date = findViewById(R.id.dateofstory);
+        image_url = findViewById(R.id.image_url);
 
 
     }
@@ -94,11 +95,11 @@ public class admin_panel extends AppCompatActivity {
 
                     }
                 }
-                int randomNum = ThreadLocalRandom.current().nextInt(0, title.size() - 1 + 1);
+                int randomNum = (int) (Math.random() * (title.size() - 1 - 0 + 1) + 0);
                 pragraphofstory.setText(decryption(paragraph.get(randomNum)));
                 title_story.setText(title.get(randomNum));
                 date.setText("2022-04-19");
-                uncensored_title=title.get(randomNum);
+                uncensored_title = title.get(randomNum);
             }
         });
 
@@ -106,9 +107,9 @@ public class admin_panel extends AppCompatActivity {
         insertBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!pragraphofstory.getText().toString().isEmpty() && !title_story.getText().toString().isEmpty() && !date.getText().toString().isEmpty()) {
+                if (!image_url.getText().toString().isEmpty() && !pragraphofstory.getText().toString().isEmpty() && !title_story.getText().toString().isEmpty() && !date.getText().toString().isEmpty()) {
                     pasteAndRuncode();
-                    FcmNotificationsSender fcmNotificationsSender = new FcmNotificationsSender("/topics/test", uncensored_title, "पूरी कहानी पढ़ें", "Notification_Story", admin_panel.this);
+                    FcmNotificationsSender fcmNotificationsSender = new FcmNotificationsSender("/topics/all", uncensored_title, "पूरी कहानी पढ़ें", image_url.getText().toString(), "Notification_Story", admin_panel.this);
                     fcmNotificationsSender.SendNotifications();
                 } else {
                     Toast.makeText(admin_panel.this, "Enter data", Toast.LENGTH_SHORT).show();
@@ -187,6 +188,7 @@ public class admin_panel extends AppCompatActivity {
         notificationMref.child("Notification").child(Push_ID).child("Title").setValue(titlee);
         notificationMref.child("Notification").child(Push_ID).child("Heading").setValue(paragrapg);
         notificationMref.child("Notification").child(Push_ID).child("Date").setValue(datee);
+        mref.child("Notification_ImageURL").setValue(image_url.getText().toString());
         Toast.makeText(getApplicationContext(), "Data is Successfully Added", Toast.LENGTH_SHORT).show();
 
         title_story.getText().clear();
@@ -273,6 +275,7 @@ public class admin_panel extends AppCompatActivity {
         mref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                image_url.setText((String) snapshot.child("Notification_ImageURL").getValue().toString().trim());
                 String match = (String) snapshot.child("switch_Exit_Nav").getValue().toString().trim();
 
                 if (match.equals("active")) {

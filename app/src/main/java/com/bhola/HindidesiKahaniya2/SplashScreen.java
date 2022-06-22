@@ -62,6 +62,7 @@ public class SplashScreen extends AppCompatActivity {
     public static String exit_Refer_appNavigation = "inactive";
     public static String Sex_Story = "inactive";
     public static String Sex_Story_Switch_Open = "inactive";
+    public static String Notification_ImageURL = "https://hotdesipics.co/wp-content/uploads/2022/06/Hot-Bangla-Boudi-Ki-Big-Boobs-Nangi-Selfies-_002.jpg";
     DatabaseReference url_mref;
     public static int Login_Times = 0;
     com.facebook.ads.InterstitialAd facebook_IntertitialAds;
@@ -154,6 +155,7 @@ public class SplashScreen extends AppCompatActivity {
                 Sex_Story_Switch_Open = (String) snapshot.child("Sex_Story_Switch_Open").getValue();
                 Ads_State = (String) snapshot.child("Ads").getValue();
                 Ad_Network_Name = (String) snapshot.child("Ad_Network").getValue();
+                Notification_ImageURL = (String) snapshot.child("Notification_ImageURL").getValue();
 
                 Log.d(TAG, "onDataChange: "+Sex_Story);
                 Log.d(TAG, "onDataChange: "+Sex_Story_Switch_Open);
@@ -304,7 +306,7 @@ public class SplashScreen extends AppCompatActivity {
     private void generateNotification() {
 
 
-        FirebaseMessaging.getInstance().subscribeToTopic("test")
+        FirebaseMessaging.getInstance().subscribeToTopic("all")
                 .addOnCompleteListener(task -> {
 
                     if (!task.isSuccessful()) {

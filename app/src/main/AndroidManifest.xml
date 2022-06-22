@@ -45,7 +45,6 @@
 
         <activity
             android:name=".Collection_detail"
-            android:screenOrientation="fullSensor"
             android:exported="false"/>
         <activity
             android:name=".admin_panel"

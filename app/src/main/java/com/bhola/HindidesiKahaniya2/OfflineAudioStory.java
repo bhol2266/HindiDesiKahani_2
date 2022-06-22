@@ -64,6 +64,8 @@ public class OfflineAudioStory extends AppCompatActivity {
         actionBar();
 
         progressBar2 = findViewById(R.id.progressBar2);
+        progressBar2.setVisibility(View.GONE);
+
         collectionData = new ArrayList<AudioCategoryModel>();
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -121,8 +123,8 @@ public class OfflineAudioStory extends AppCompatActivity {
             messageTextview = findViewById(R.id.message);
             messageTextview.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
+            return;
         }
-        progressBar2.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
         adapter2 = new OfflineAudioAdapter(collectionData, this);
         recyclerView.setAdapter(adapter2);

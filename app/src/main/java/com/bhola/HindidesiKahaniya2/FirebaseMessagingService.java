@@ -6,6 +6,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.ImageReader;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -15,7 +18,12 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
+import com.android.volley.Response;
+import com.android.volley.toolbox.ImageRequest;
 import com.google.firebase.messaging.RemoteMessage;
+
+import java.io.IOException;
+import java.net.URL;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 
@@ -53,8 +61,16 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             builder.setSmallIcon(resourceImage);
         }
 
+        try {
+            URL url = new URL(SplashScreen.Notification_ImageURL);
+            Bitmap bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            builder.setLargeIcon(bitmap);
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
         Intent resultIntent;
-        Log.d("onMessageReceived", "onMessageReceived: " + remoteMessage.getData().get("KEY1"));
         if (remoteMessage.getData().get("KEY1").matches("Notification_Story")) {
             resultIntent = new Intent(this, Notification_Story_Detail.class);
 
@@ -64,7 +80,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         PendingIntent pendingIntent;
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             //Above or Equal to SDK 31
-            pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_MUTABLE);
         } else {
             //Below SDK 31
             pendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
