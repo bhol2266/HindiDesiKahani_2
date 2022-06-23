@@ -192,7 +192,7 @@ public class AudioPlayer extends AppCompatActivity {
                 loadingMessage.setTextColor(Color.parseColor("#FF0000"));
                 loadingMessage.setTextSize(20);
                 progressbarUnit.setVisibility(View.GONE);
-
+                mp.stop();
                 return false;
             }
         });
