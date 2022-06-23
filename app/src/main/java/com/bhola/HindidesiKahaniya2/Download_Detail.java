@@ -204,7 +204,6 @@ class Download_story_ADAPTER extends RecyclerView.Adapter<Download_story_ADAPTER
        ModelData_forFavourites modelData_forFavourites = collectonData.get(position);
        holder.title.setText(modelData_forFavourites.getTitle());
        holder.date.setText(modelData_forFavourites.getDate());
-       holder.heading.setText(modelData_forFavourites.getHeading());
 
 
 
@@ -293,7 +292,7 @@ class Download_story_ADAPTER extends RecyclerView.Adapter<Download_story_ADAPTER
    public class viewholder extends RecyclerView.ViewHolder {
        TextView title;
        TextView index, heading, date;
-       RelativeLayout recyclerview;
+       LinearLayout recyclerview;
 
 
        public viewholder(@NonNull View itemView) {
