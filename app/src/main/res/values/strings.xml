@@ -6,7 +6,7 @@
     ADMOB Real Ads ID :
         <string name="BannerAd">ca-app-pub-8226562131234590/8949145216</string>
         <string name="RewardedInterstitial">ca-app-pub-8226562131234590/9097350841</string>
-        <string name="AppOpen">ca-app-pub-8226562131234590/7970551792</string>
+        <string name="AppOpen">.ca-app-pub-8226562131234590/7970551792</string>
         <string name="NativeAd">ca-app-pub-8226562131234590/6685390285</string>
         <string name="Interstitial">ca-app-pub-8226562131234590/6322981872</string>
 
